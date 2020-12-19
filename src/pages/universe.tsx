@@ -1,12 +1,16 @@
 import React, { useState, useCallback, useRef } from "react";
 import produce from "immer";
+import { Paper } from '@material-ui/core';
+// import { Grid } from '@material-ui/core';
+// import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
 
 import { useDispatch } from 'react-redux';
 
 import { notifyCurrentPage } from '../redux/actions';
 
-const numRows = 30;
-const numCols = 76;
+const numRows = 45;
+const numCols = 147;
 
 const operations = [
   [0, 1],
@@ -19,7 +23,40 @@ const operations = [
   [-1, 0],
 ];
 
+const useStyles = makeStyles((theme) => ({
+  pageContent: {
+    margin: theme.spacing(5),
+    padding: theme.spacing(3)
+  },
+  avatar: {
+    display: 'flex',
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+  giant: {
+    width: theme.spacing(30),
+    height: theme.spacing(30)
+  },
+  title: {
+    flexGrow: 1,
+  },
+  helloStickerMaxWidth: {
+    maxWidth: 440,
+  },
+  media: {
+    height: 538,
+  },
+  helloStickerHeader: {
+    ...theme.typography.button,
+    backgroundColor: "red",
+    color: "white",
+  }
+}));
+
 const Universe = (props: any) => {
+
+  const classes = useStyles();
 
   const dispatch = useDispatch();
   dispatch(notifyCurrentPage('Universe'));
@@ -73,6 +110,9 @@ const Universe = (props: any) => {
 
   return (
     <>
+      {
+        // NavBar ButtonBar
+      }
       <button
         onClick={() => {
           setRunning(!running);
@@ -84,10 +124,14 @@ const Universe = (props: any) => {
       >
         {running ? "stop" : "start"}
       </button>
+      {
+        // Universe
+      }
+      <Paper className={classes.pageContent}>
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: `repeat(${numCols}, 20px)`,
+          gridTemplateColumns: `repeat(${numCols}, 10px)`,
         }}
       >
         {grid.map((rows, i) =>
@@ -101,8 +145,8 @@ const Universe = (props: any) => {
                 setGrid(newGrid);
               }}
               style={{
-                width: 20,
-                height: 20,
+                width: 10,
+                height: 10,
                 backgroundColor: grid[i][k] ? "pink" : undefined,
                 border: "solid 1px black",
               }}
@@ -110,6 +154,7 @@ const Universe = (props: any) => {
           ))
         )}
       </div>
+      </Paper>
     </>
   );
 };
