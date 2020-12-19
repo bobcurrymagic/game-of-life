@@ -1,113 +1,47 @@
-// import React from 'react';
+import React from 'react';
+import { Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 
-// import React from "react";
-import React, { useState, useCallback, useRef } from "react";
-// import React, { useState, useCallback, useRef } from "react";
-import produce from "immer";
+// import { makeStyles } from '@material-ui/core/styles';
+//import Button from '@material-ui/core/Button';
 
-const numRows = 50;
-const numCols = 50;
+//import './App.css';
+//import "./styles.css";
 
-const operations = [
-  [0, 1],
-  [0, -1],
-  [1, -1],
-  [-1, 1],
-  [1, 1],
-  [-1, -1],
-  [1, 0],
-  [-1, 0],
-];
+import 'fontsource-roboto';
 
-const App: React.FC = () => {
-  const [grid, setGrid] = useState(() => {
-    const rows = [];
-    for (let i = 0; i < numRows; i++) {
-      rows.push(Array.from(Array(numCols), () => 0));
-    }
+import Header from './components/header';
 
-    return rows;
-  });
+import Universe from './pages/universe';
+//import Projects from './pages/projects';
+//import Skills from './pages/skills';
+import Contact from './pages/contact';
+//import SignUp from './pages/signup';
+//import About from './pages/about';
+//import LogIn from './pages/login';
+//import LogOut from './pages/logout';
+//import MyAccount from './pages/myaccount';
 
-  console.log(grid);
-  console.table(grid);
-  const [running, setRunning] = useState(false);
+// const useStyles = makeStyles({});
 
-  const runningRef = useRef(running);
-  runningRef.current = running;
-
-  const runSimulation = useCallback(() => {
-    if (!runningRef.current) {
-      return;
-    }
-    // simulate
-    setGrid((g) => {
-      return produce(g, (gridCopy) => {
-        for (let i = 0; i < numRows; i++) {
-          for (let k = 0; k < numCols; k++) {
-            let neighbors = 0;
-            operations.forEach(([x, y]) => {
-              const newI = i + x;
-              const newK = k + y;
-              if (newI >= 0 && newI < numRows && newK >= 0 && newK < numCols) {
-                neighbors += g[newI][newK];
-              }
-            });
-
-            if (neighbors < 2 || neighbors > 3) {
-              gridCopy[i][k] = 0;
-            } else if (g[i][k] === 0 && neighbors === 3) {
-              gridCopy[i][k] = 1;
-            }
-          }
-        }
-      });
-    });
-
-    setTimeout(runSimulation, 20);
-  }, []);
-
+export default function App() {
+  // const classes = useStyles();
   return (
-    <>
-      <button
-        onClick={() => {
-          setRunning(!running);
-          if (!running) {
-            runningRef.current = true;
-            runSimulation();
-          }
-        }}
-      >
-        {running ? "stop" : "start"}
-      </button>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: `repeat(${numCols}, 20px)`,
-        }}
-      >
-        {grid.map((rows, i) =>
-          rows.map((col, k) => (
-            <div
-              key={`${i}-${k}`}
-              onClick={() => {
-                const newGrid = produce(grid, (gridCopy) => {
-                  gridCopy[i][k] = grid[i][k] ? 0 : 1;
-                });
-                setGrid(newGrid);
-              }}
-              style={{
-                width: 20,
-                height: 20,
-                backgroundColor: grid[i][k] ? "pink" : undefined,
-                border: "solid 1px black",
-              }}
-            />
-          ))
-        )}
-      </div>
-    </>
+    <div>
+      <Header />
+      <Switch>
+        {/* <Route exact from="/" render={props => <Universe {...props} />} /> */}
+        {/* <Route exact path="/" component={Universe} /> */}
+        <Route exact path="/" render={props => <Universe {...props} />} />
+        {/* <Route exact path="/projects" render={props => <Projects {...props} />} /> */}
+        {/* <Route exact path="/skills" render={props => <Skills {...props} />} /> */}
+        <Route exact path="/contact" render={props => <Contact {...props} />} />
+        {/* <Route exact path="/signup" render={props => <SignUp {...props} />} /> */}
+        {/* <Route exact path="/about" render={props => <About {...props} />} /> */}
+        {/* <Route exact path="/login" render={props => <LogIn {...props} />} /> */}
+        {/* <Route exact path="/logout" render={props => <LogOut {...props} />} /> */}
+        {/* <Route exact path="/myaccount" render={props => <MyAccount {...props} />} /> */}
+      </Switch>
+    </div>
   );
-};
-
-export default App;
+}
