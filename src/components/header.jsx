@@ -191,8 +191,19 @@ const Header = props => {
                   onClose={() => setAnchorEl(null)}
                 >
                   <MenuItem onClick={() => handleMenuClick('/')}>Universe</MenuItem>
-                  <MenuItem onClick={() => handleMenuClick('/projects')}>Projects</MenuItem>
-                  <MenuItem onClick={() => handleMenuClick('/skills')}>Skills</MenuItem>
+                  { isLogInSupported ?
+                    (
+                      <React.Fragment>
+                        <MenuItem onClick={() => handleMenuClick('/projects')}>Projects</MenuItem>
+                        <MenuItem onClick={() => handleMenuClick('/skills')}>Skills</MenuItem>
+                      </React.Fragment>
+                    ) :
+                    (
+                      // LogIn NOT Supported
+                      <React.Fragment>
+                      </React.Fragment>
+                    )
+                  }
                   <MenuItem onClick={() => handleMenuClick('/contact')}>Contact</MenuItem>
                   { isLogInSupported ?
                     (
@@ -216,14 +227,25 @@ const Header = props => {
                   Universe
                 </Button>
                 {' '}
-                <Button variant='contained' color='primary' onClick={() => handleButtonClick('/projects')}>
-                  Projects
-                </Button>
-                {' '}
-                <Button variant='contained' color='primary' onClick={() => handleButtonClick('/skills')}>
-                  Skills
-                </Button>
-                {' '}
+                { isLogInSupported ?
+                  (
+                    <React.Fragment>
+                      <Button variant='contained' color='primary' onClick={() => handleButtonClick('/projects')}>
+                        Projects
+                      </Button>
+                      {' '}
+                      <Button variant='contained' color='primary' onClick={() => handleButtonClick('/skills')}>
+                        Skills
+                      </Button>
+                      {' '}
+                    </React.Fragment>
+                  ) :
+                  (
+                    // LogIn NOT Supported
+                    <React.Fragment>
+                    </React.Fragment>
+                  )
+                }
                 <Button variant='contained' color='primary' onClick={() => handleButtonClick('/contact')}>
                   Contact
                 </Button>

@@ -1,6 +1,15 @@
 import React, { useState, useCallback, useRef } from "react";
 import produce from "immer";
 import { Paper } from '@material-ui/core';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MoreVert from '@material-ui/icons/MoreVert';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
 // import { Grid } from '@material-ui/core';
 // import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,8 +18,8 @@ import { useDispatch } from 'react-redux';
 
 import { notifyCurrentPage } from '../redux/actions';
 
-const numRows = 45;
-const numCols = 147;
+// const numRows = 44;
+// const numCols = 147;
 
 const operations = [
   [0, 1],
@@ -24,6 +33,9 @@ const operations = [
 ];
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
   pageContent: {
     margin: theme.spacing(5),
     padding: theme.spacing(3)
@@ -57,18 +69,87 @@ const useStyles = makeStyles((theme) => ({
 const Universe = (props: any) => {
 
   const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isLoggedIn = false;
 
   const dispatch = useDispatch();
   dispatch(notifyCurrentPage('Universe'));
 
-  const [grid, setGrid] = useState(() => {
-  const rows = [];
-  for (let i = 0; i < numRows; i++) {
-    rows.push(Array.from(Array(numCols), () => 0));
+  function setRows( isMobile: boolean ) {
+    let result = 0;
+    if( isMobile ) {
+      result = 30;
+    }
+    else
+    {
+      result = 44;
+    }
+    return result;
   }
 
-  return rows;
-});
+  function setCols( isMobile: boolean ) {
+    let result = 0;
+    if( isMobile ) {
+      result = 36;
+    }
+    else
+    {
+      result = 147;
+    }
+    return result;
+  }
+
+  const numRows = setRows( isMobile );
+  const numCols = setCols( isMobile );
+  
+  const handleMenu = (event: any) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClick = (buttonCaption: any) => {
+    setAnchorEl(null);
+    executeButtonFunctionality(buttonCaption);
+  };
+
+  const handleButtonClick = (buttonCaption: any) => {
+    executeButtonFunctionality(buttonCaption);
+  };
+
+  const executeButtonFunctionality = (buttonCaption: any) => {
+    switch (buttonCaption) {
+      case 'Start':
+        // START
+        toggleUniverseTickMode();
+        break;
+      case 'Stop':
+        // START
+        toggleUniverseTickMode();
+        break;
+      default:
+        // UNKNOWN
+        break;
+    }
+  }
+
+  const toggleUniverseTickMode = () => {
+    setRunning(!running);
+    if (!running) {
+      runningRef.current = true;
+      runSimulation(isMobile);
+    }
+  }
+
+    const [grid, setGrid] = useState(() => {
+      const rows = [];
+      for (let i = 0; i < numRows; i++) {
+        rows.push(Array.from(Array(numCols), () => 0));
+      }
+
+      return rows;
+    });
 
   console.log(grid);
   console.table(grid);
@@ -77,11 +158,13 @@ const Universe = (props: any) => {
   const runningRef = useRef(running);
   runningRef.current = running;
 
-  const runSimulation = useCallback(() => {
+  const runSimulation = useCallback((isMobile: boolean) => {
     if (!runningRef.current) {
       return;
     }
     // simulate
+    const numRows = setRows( isMobile );
+    const numCols = setCols( isMobile );
     setGrid((g) => {
       return produce(g, (gridCopy) => {
         for (let i = 0; i < numRows; i++) {
@@ -113,17 +196,113 @@ const Universe = (props: any) => {
       {
         // NavBar ButtonBar
       }
-      <button
-        onClick={() => {
-          setRunning(!running);
-          if (!running) {
-            runningRef.current = true;
-            runSimulation();
-          }
-        }}
-      >
-        {running ? "stop" : "start"}
-      </button>
+      <div className={classes.root}>
+        <AppBar position="static" color='inherit'>
+          <Toolbar>
+            <div>
+              { isMobile ?
+                (
+                  <React.Fragment>
+                    <IconButton
+                      aria-label="options"
+                      aria-controls="menu-appbar"
+                      aria-haspopup="true"
+                      onClick={handleMenu}
+                      color="inherit"
+                    >
+                      <MoreVert />
+                    </IconButton>
+                    <Menu
+                      id="menu-appbar"
+                      anchorEl={anchorEl}
+                      anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                      }}
+                      keepMounted
+                      transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                      }}
+                      open={open}
+                      onClose={() => setAnchorEl(null)}
+                    >
+                      <MenuItem onClick={() => handleMenuClick('Start')}>{running ? "Stop" : "Start"}</MenuItem>
+                      { false ?
+                        (
+                          <React.Fragment>
+                            <MenuItem onClick={() => handleMenuClick('Clear')}>Clear</MenuItem>
+                          </React.Fragment>
+                        ) :
+                        (
+                          // NOT Logged In
+                          <React.Fragment>
+                          </React.Fragment>
+                        )
+                      }
+                      { isLoggedIn ?
+                        (
+                          <React.Fragment>
+                            <MenuItem onClick={() => handleMenuClick('Save')}>Save</MenuItem>
+                            <MenuItem onClick={() => handleMenuClick('Load')}>Load</MenuItem>
+                          </React.Fragment>
+                        ) :
+                        (
+                          // NOT Logged In
+                          <React.Fragment>
+                          </React.Fragment>
+                        )
+                      }
+                    </Menu>
+                  </React.Fragment>
+                ) :
+                (
+                  <React.Fragment>
+                    <Button variant='contained' color='primary' onClick={() => handleButtonClick('Start')}>
+                      {running ? "Stop" : "Start"} 
+                    </Button>
+                    {' '}
+                    { false ?
+                      (
+                        <React.Fragment>
+                          <Button variant='contained' color='primary' onClick={() => handleButtonClick('Clear')}>
+                            Clear
+                          </Button>
+                          {' '}
+                        </React.Fragment>
+                      ) :
+                      (
+                        // NOT Logged In
+                        <React.Fragment>
+                        </React.Fragment>
+                      )
+                    }
+                    { isLoggedIn ?
+                      (
+                        <React.Fragment>
+                          <Button variant='contained' color='primary' onClick={() => handleButtonClick('Save')}>
+                            Save
+                          </Button>
+                          {' '}
+                          <Button variant='contained' color='primary' onClick={() => handleButtonClick('Load')}>
+                            Load
+                          </Button>
+                          {' '}
+                        </React.Fragment>
+                      ) :
+                      (
+                        // NOT Logged In
+                        <React.Fragment>
+                        </React.Fragment>
+                      )
+                    }
+                  </React.Fragment>
+                )
+              }
+            </div>
+          </Toolbar>
+        </AppBar>
+      </div>
       {
         // Universe
       }
@@ -147,7 +326,7 @@ const Universe = (props: any) => {
               style={{
                 width: 10,
                 height: 10,
-                backgroundColor: grid[i][k] ? "pink" : undefined,
+                backgroundColor: grid[i][k] ? "black" : undefined,
                 border: "solid 1px black",
               }}
             />
