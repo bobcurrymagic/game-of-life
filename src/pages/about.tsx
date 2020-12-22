@@ -92,9 +92,9 @@ const About = (props: any) => {
                     <br />
                     Conditional rendering
                     <br />
-                    Hooks: useState
+                    Hooks: useState, useCallback
                     <br />
-                    State management: react-redux, setState, props
+                    State management: react-redux, immer, setState, props
                     <br />
                     Component composition: function, props, event handling
                     <br /><br />
@@ -106,7 +106,7 @@ const About = (props: any) => {
                     <br />
                     Layout: Grid container, Grid item
                     <br />
-                    Presentation components and APIs: AppBar, Toolbar, Paper, Typography, Accordion, Button, IconButton
+                    Presentation components and APIs: AppBar, Toolbar, Menu, MenuItem, Paper, Typography, Accordion, Button, IconButton
                     <br /><br />
                     Navigation and routing: react-router-dom (BrowserRouter, Switch, Route, Link, withRouter)
                   </Typography>
