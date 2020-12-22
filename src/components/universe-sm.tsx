@@ -12,8 +12,8 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
 
-const numRows = 30;
-const numCols = 36;
+const numRows = 38;
+const numCols = 28;
 
 const operations = [
   [0, 1],
