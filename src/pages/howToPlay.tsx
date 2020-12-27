@@ -75,7 +75,7 @@ const HowToPlay = (props: any) => {
               <br /><br />
             </Typography>
             <Typography variant="body2">
-							Reference and background: Wikipedia <a href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life" target='_blank' rel='noopener noreferrer' color="inherit">https://en.wikipedia.org/wiki/Conway's_Game_of_Life</a>
+							Reference and background: Wikipedia <a href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life" target='_blank' rel='noopener noreferrer' color="inherit">Conway's Game of Life</a>
               <br /><br />
             </Typography>
             <Typography variant="h6" className={classes.title}>

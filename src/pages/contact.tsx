@@ -93,7 +93,6 @@ const Contact = (props: any) => {
                   <Typography variant="body1" className={classes.title}>
                     Questions or inquiries? You can reach me by email at <a href="mailto:bobcurrymagic@gmail.com" color="inherit">bobcurrymagic@gmail.com</a>, by phone at +1-732-306-4076,
                     or by filling out and submitting the below form.
-                    <br /><br />
                   </Typography>
                 </React.Fragment>
               )
