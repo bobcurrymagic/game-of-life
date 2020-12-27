@@ -73,7 +73,10 @@ const Header = props => {
       case '/skills':
         dispatch(notifyCurrentPage('Skills'));
         break;
-      case '/contact':
+      case '/howtoplay':
+        dispatch(notifyCurrentPage('How To Play'));
+        break;
+        case '/contact':
         dispatch(notifyCurrentPage('Contact'));
         break;
       case '/signup':
@@ -204,6 +207,7 @@ const Header = props => {
                       </React.Fragment>
                     )
                   }
+                  <MenuItem onClick={() => handleMenuClick('/howtoplay')}>How To Play</MenuItem>
                   <MenuItem onClick={() => handleMenuClick('/contact')}>Contact</MenuItem>
                   { isLogInSupported ?
                     (
@@ -246,6 +250,9 @@ const Header = props => {
                     </React.Fragment>
                   )
                 }
+                <Button variant='contained' color='primary' onClick={() => handleButtonClick('/howtoplay')}>
+                  How To Play
+                </Button>
                 <Button variant='contained' color='primary' onClick={() => handleButtonClick('/contact')}>
                   Contact
                 </Button>

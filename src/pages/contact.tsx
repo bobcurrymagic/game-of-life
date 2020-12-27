@@ -10,6 +10,8 @@ import { useDispatch } from 'react-redux';
 
 import { notifyCurrentPage } from '../redux/actions';
 
+import ContactForm from './contactForm';
+
 const useStyles = makeStyles((theme) => ({
   pageContent: {
     margin: theme.spacing(5),
@@ -89,12 +91,14 @@ const Contact = (props: any) => {
                 // LogIn NOT Supported
                 <React.Fragment>
                   <Typography variant="body1" className={classes.title}>
-                    Questions or inquiries? You can reach me by email at <a href="mailto:bobcurrymagic@gmail.com" color="inherit">bobcurrymagic@gmail.com</a> or by phone at +1-732-306-4076.
+                    Questions or inquiries? You can reach me by email at <a href="mailto:bobcurrymagic@gmail.com" color="inherit">bobcurrymagic@gmail.com</a>, by phone at +1-732-306-4076,
+                    or by filling out and submitting the below form.
                     <br /><br />
                   </Typography>
                 </React.Fragment>
               )
             }
+            <ContactForm />
           </Grid>
         </Grid>
       </Paper>

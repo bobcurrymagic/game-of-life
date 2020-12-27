@@ -63,9 +63,11 @@ const About = (props: any) => {
               Architecture:
             </Typography>
             <Typography variant="body1" className={classes.title}>
-              I built the Game of Life website using React with React Material-UI.
+              I built the Game of Life website using React with React Material-UI. Rest API web services are provided
+              using Axios to the middle tier REST API web service endpoint, which communicates with a backend
+              MS-SQL Server database using ASP.NET MVC and C#.
               <br /><br />
-              Taking a modern DevOps approach, I built a Microsoft Azure CI/CD pipeline to host the frontend tier.
+              Taking a modern DevOps approach, I built a Microsoft Azure CI/CD pipeline to host all 3 tiers.
               <br /><br />
             </Typography>
             <Typography variant="h6" className={classes.title}>
@@ -106,9 +108,43 @@ const About = (props: any) => {
                     <br />
                     Layout: Grid container, Grid item
                     <br />
-                    Presentation components and APIs: AppBar, Toolbar, Menu, MenuItem, Paper, Typography, Accordion, Button, IconButton
+                    Presentation components and APIs: AppBar, Toolbar, Menu, MenuItem, Paper, Typography, Accordion, FormControl, TextField, InputLabel, Select, MuiPickersUtilsProvider, KeyboardDatePicker, DateFnsUtils, Button, IconButton, Snackbar, Slide
+                    <br /><br />
+                    REST API web services: Axios
                     <br /><br />
                     Navigation and routing: react-router-dom (BrowserRouter, Switch, Route, Link, withRouter)
+                  </Typography>
+                </AccordionDetails>
+              </Accordion>
+              <Accordion>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel2a-content"
+                  id="panel2a-header"
+                >
+                  <Typography variant="body1" className={classes.heading}>Middle tier</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Typography variant="body2">
+                    ASP.NET MVC
+                    <br /><br />
+                    REST API web service endpoint, accepting requests from the frontend
+                    <br /><br />
+                    Communicates with a backend MS-SQL Server database using ASP.NET MVC and C#
+                  </Typography>
+                </AccordionDetails>
+              </Accordion>
+              <Accordion>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel3a-content"
+                  id="panel3a-header"
+                >
+                  <Typography variant="body1" className={classes.heading}>Backend tier</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Typography variant="body2">
+                    MS-SQL Server database
                   </Typography>
                 </AccordionDetails>
               </Accordion>
@@ -122,7 +158,7 @@ const About = (props: any) => {
                 </AccordionSummary>
                 <AccordionDetails>
                   <Typography variant="body2">
-                    Microsoft Azure Continuous Integration/Continuous Delivery (CI/CD) pipeline, hosting the frontend tier
+                    Microsoft Azure Continuous Integration/Continuous Delivery (CI/CD) pipeline, hosting frontend, middle, and backend tiers  
                   </Typography>
                 </AccordionDetails>
               </Accordion>

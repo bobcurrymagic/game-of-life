@@ -15,6 +15,7 @@ import Header from './components/header';
 import Universe from './pages/universe';
 //import Projects from './pages/projects';
 //import Skills from './pages/skills';
+import HowToPlay from './pages/howToPlay';
 import Contact from './pages/contact';
 //import SignUp from './pages/signup';
 import About from './pages/about';
@@ -35,6 +36,7 @@ export default function App() {
         <Route exact path="/" render={props => <Universe {...props} />} />
         {/* <Route exact path="/projects" render={props => <Projects {...props} />} /> */}
         {/* <Route exact path="/skills" render={props => <Skills {...props} />} /> */}
+        <Route exact path="/howtoplay" render={props => <HowToPlay {...props} />} />
         <Route exact path="/contact" render={props => <Contact {...props} />} />
         {/* <Route exact path="/signup" render={props => <SignUp {...props} />} /> */}
         <Route exact path="/about" render={props => <About {...props} />} />
