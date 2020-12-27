@@ -8,7 +8,7 @@ export default function TextFieldMultilineStandard(props) {
   return (
     <TextField
 			multiline
-			rows={4}
+			rows={2}
       variant = 'filled'
       label = {label}
       name = {name}

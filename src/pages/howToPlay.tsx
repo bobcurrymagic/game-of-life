@@ -10,7 +10,8 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-import StarterPatternExample from '../static/images/starter-pattern-example.png';
+import StarterPatternExample1 from '../static/images/starter-pattern-example-1.png';
+import StarterPatternExample2 from '../static/images/starter-pattern-example-2.png';
 
 import { useDispatch } from 'react-redux';
 
@@ -63,7 +64,7 @@ const HowToPlay = (props: any) => {
     <div>
       <Paper className={classes.pageContent}>
         <Grid container>
-          <Grid item>
+          <Grid item xs={12}>
             <Typography variant="h6" className={classes.title}>
               Conway's Game of Life:
             </Typography>
@@ -72,7 +73,9 @@ const HowToPlay = (props: any) => {
 							It is a zero-player game, meaning that its evolution is determined by its initial state, requiring no further input. One interacts
 							with the game by creating an initial configuration and observing how it evolves.
               <br /><br />
-							Source and background: Wikipedia <a href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life" target='_blank' rel='noopener noreferrer' color="inherit">https://en.wikipedia.org/wiki/Conway's_Game_of_Life</a>
+            </Typography>
+            <Typography variant="body2">
+							Reference and background: Wikipedia <a href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life" target='_blank' rel='noopener noreferrer' color="inherit">https://en.wikipedia.org/wiki/Conway's_Game_of_Life</a>
               <br /><br />
             </Typography>
             <Typography variant="h6" className={classes.title}>
@@ -90,7 +93,7 @@ const HowToPlay = (props: any) => {
                 <AccordionDetails>
                   <Typography variant="body2" >
                     If you are not familiar with Conway's Game of Life, it is suggested that you first review
-                    the above Wikipedia source and background link to gain a greater appreciation.
+                    the above Wikipedia reference and background link to gain a greater appreciation.
                   </Typography>
                 </AccordionDetails>
               </Accordion>
@@ -169,16 +172,25 @@ const HowToPlay = (props: any) => {
                 </AccordionSummary>
                 <AccordionDetails>
                   <Grid container>
-                    <Grid item xs={12} lg={12}>
+                    <Grid item xs={12}>
                       { !isMobile &&
-                      <img src={StarterPatternExample} alt="Starter Pattern Example" style={{width:"400px", border: "1px solid #555"}}></img>
+                      <img src={StarterPatternExample1} alt="Starter Pattern Example 1" style={{width:"400px", border: "1px solid #555"}}></img>
                       }
                       { isMobile &&
-                      <img src={StarterPatternExample} alt="Starter Pattern Example" style={{width:"200px", border: "1px solid #555"}}></img>
+                      <img src={StarterPatternExample1} alt="Starter Pattern Example 1" style={{width:"200px", border: "1px solid #555"}}></img>
                       }
                       <br /><br />
                     </Grid>
-                    <Grid item xs={12} lg={12}>
+                    <Grid item xs={12}>
+                      { !isMobile &&
+                      <img src={StarterPatternExample2} alt="Starter Pattern Example 2" style={{width:"400px", border: "1px solid #555"}}></img>
+                      }
+                      { isMobile &&
+                      <img src={StarterPatternExample2} alt="Starter Pattern Example 2" style={{width:"200px", border: "1px solid #555"}}></img>
+                      }
+                      <br /><br />
+                    </Grid>
+                    <Grid item xs={12}>
                       <Typography variant="body2">
                         Other starter patterns can be viewed on the above Wikipedia background page
                         <br /><br />

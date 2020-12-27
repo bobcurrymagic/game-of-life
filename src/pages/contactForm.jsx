@@ -59,7 +59,7 @@ const ContactForm = props => {
 			<Form onSubmit={handleSubmit}>
 				<h3>Contact Form</h3>
 				<Grid container>
-					<Grid item xs={9}>
+					<Grid item xs={12}>
 						<TextFieldStandard
 							label = 'Name'
 							name = 'contactName'
@@ -84,8 +84,6 @@ const ContactForm = props => {
 							value = {values.contactMessage}
 							onChange = {handleInputChange}
 						/>
-					</Grid>
-					<Grid item xs={3}>
 					</Grid>
 					<Grid container item xs={12} direction = 'row' justify = 'flex-end' alignItems = 'center'>
 						<ButtonStandard
