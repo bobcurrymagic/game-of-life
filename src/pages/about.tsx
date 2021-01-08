@@ -59,6 +59,19 @@ const About = (props: any) => {
       <Paper className={classes.pageContent}>
         <Grid container>
           <Grid item>
+          <Typography variant="h6" className={classes.title}>
+              About:
+            </Typography>
+            <Typography variant="body1" className={classes.title}>
+              Conway's Game of Life, also known simply as Life, is a cellular automation devised by British mathematician John Horton Conway in 1970.
+							It is a zero-player game, meaning that its evolution is determined by its initial state, requiring no further input. One interacts
+							with the game by creating an initial configuration and observing how it evolves.
+              <br /><br />
+            </Typography>
+            <Typography variant="body2">
+							Reference and background: Wikipedia <a href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life" target='_blank' rel='noopener noreferrer' color="inherit">Conway's Game of Life</a>
+              <br /><br />
+            </Typography>
             <Typography variant="h6" className={classes.title}>
               Architecture:
             </Typography>
