@@ -43,7 +43,8 @@ const ContactForm = props => {
 		return <Slide {...props} direction="up" />;
 	}
 	
-	const { values, setValues, handleInputChange } = useForm(initialFieldValues);
+	// const { values, setValues, handleInputChange } = useForm(initialFieldValues); // TODO WIP RESTORE
+	const { values, handleInputChange } = useForm(initialFieldValues);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();

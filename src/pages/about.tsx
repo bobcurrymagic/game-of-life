@@ -80,7 +80,7 @@ const About = (props: any) => {
               using Axios to the middle tier REST API web service endpoint, which communicates with a backend
               MS-SQL Server database using ASP.NET MVC and C#.
               <br /><br />
-              Taking a modern DevOps approach, I built a Microsoft Azure CI/CD pipeline to host all 3 tiers.
+              Taking a modern DevOps approach, I utilized Git/GitHub and built a Microsoft Azure Continuous Integration/Continuous Delivery (CI/CD) pipeline to host all 3 tiers.
               <br /><br />
             </Typography>
             <Typography variant="h6" className={classes.title}>
@@ -171,6 +171,8 @@ const About = (props: any) => {
                 </AccordionSummary>
                 <AccordionDetails>
                   <Typography variant="body2">
+                    Git/GitHub
+                    <br /><br />
                     Microsoft Azure Continuous Integration/Continuous Delivery (CI/CD) pipeline, hosting frontend, middle, and backend tiers  
                   </Typography>
                 </AccordionDetails>
